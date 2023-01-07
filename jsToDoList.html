@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #dv2 {
+        display: flex;
+    }
+</style>
+<body>
+    <div>
+        <h1>TO DO APP</h1>
+        <input type="text" id="inp" placeholder="Enter What to do">
+        <button id="btn" onclick="addInputArray()">Add</button>
+    </div>
+    <div id="dv2" style="display:flex;"></div>
+    <script>
+        var arr = []
+        var para = document.createElement('p')
+        function addInputArray() {
+            var inptt = document.getElementById('inp');
+            inptt.ariaPlaceholder = "Enter Something"
+            arr.push(inptt.value)
+            console.log(arr)
+            var x = document.createElement("li");
+            var dv = document.createElement("div");
+            document.body.appendChild(dv)
+            dv.id = "dv2"
+            document.getElementById("dv2").appendChild(x);
+            x.innerText = inptt.value
+            var btnwa = document.createElement("button");
+            document.getElementById("dv2").appendChild(btnwa);
+            btnwa.innerText = "Remove"
+            btnwa.onclick = function removes() {
+                x.remove();
+                btnwa.remove();
+                inptt.value ="";
+                para.innerHTML = "Please Enter Something to Add in your TODO List"
+                document.body.appendChild(para)
+            }
+            para.innerHTML = null
+            inptt.value = ' ';
+            var str = JSON.stringify(arr);
+            localStorage.setItem("arr", str);
+        }
+</script>
+</body>
+</html>
